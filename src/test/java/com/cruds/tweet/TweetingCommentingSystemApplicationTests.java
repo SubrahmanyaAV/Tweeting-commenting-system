@@ -16,7 +16,6 @@ import com.cruds.tweet.entity.User;
 import com.cruds.tweet.repository.TweetRepository;
 import com.cruds.tweet.repository.UserRepository;
 import com.cruds.tweet.service.TweetService;
-import com.cruds.tweet.service.UserService;
 
 @SpringBootTest
 class TweetingCommentingSystemApplicationTests {

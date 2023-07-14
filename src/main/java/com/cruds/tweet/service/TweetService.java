@@ -1,5 +1,7 @@
 package com.cruds.tweet.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,11 @@ public class TweetService {
 	@Autowired
 	private TweetRepository tweetRepo;
 	
-	public Tweet createUser(Tweet tweet) {
+	public List<Tweet> listAll(){
+		return tweetRepo.findAll();
+	}
+	
+	public Tweet saveTweet(Tweet tweet) {
 		return tweetRepo.save(tweet);
 	}
 
@@ -20,6 +26,15 @@ public class TweetService {
         return tweetRepo.findById(tweetId)
                 .orElseThrow(() -> new IllegalArgumentException("Tweet not found"));
     }
+	
+	public Tweet updateTweet(Integer id, String content) {
+		 Tweet tweet = tweetRepo.findById(id).orElse(null);
+	        if (tweet != null) {
+	        	tweet.setContent(content);
+	            return tweetRepo.save(tweet);
+	        }
+	        return null;
+	}
 	
 	public void deleteTweet(Integer tweetId) {
 		Tweet tweet = tweetRepo.findById(tweetId)

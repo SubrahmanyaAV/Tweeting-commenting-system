@@ -1,7 +1,8 @@
 package com.cruds.tweet.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -29,8 +30,9 @@ public class User {
 	@Column(length = 64, nullable = false)
     private String password;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Tweet> tweets = new ArrayList<>();
+	private Set<Tweet> tweets ;
 
 	public User() {
 		super();
@@ -75,11 +77,11 @@ public class User {
 		this.password = password;
 	}
 
-	public List<Tweet> getTweets() {
+	public Set<Tweet> getTweets() {
 		return tweets;
 	}
 
-	public void setTweets(List<Tweet> tweets) {
+	public void setTweets(Set<Tweet> tweets) {
 		this.tweets = tweets;
 	}
 
